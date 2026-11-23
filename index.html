@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plan de slăbit: 115 → 105 kg în 14 săptămâni</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;700;800&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F1F4F9; --card:#FFFFFF; --ink:#0B1B2B; --muted:#5B6B7C; --line:#E0E6EE;
+  --navy:#0B1B2B; --lime:#B6F24B; --amber:#FFB454;
+  --c-bf:#FFE9C7; --c-lu:#D5F3E3; --c-sn:#E6DEFB; --c-di:#D6E6FB;
+  --free:#FFDCD3; --shadow:0 10px 30px -12px rgba(11,27,43,.25);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#08121D; --card:#101F30; --ink:#E9EFF6; --muted:#9FB0C2; --line:#223347;
+    --c-bf:#3A2E17; --c-lu:#14352A; --c-sn:#2C2547; --c-di:#14304F; --free:#4A241C;
+    --shadow:0 10px 30px -12px rgba(0,0,0,.6);
+  }
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,-apple-system,"Segoe UI",sans-serif;font-size:17px;line-height:1.55}
+h1,h2,h3,h4{font-family:"Sora","Trebuchet MS",system-ui,sans-serif;margin:0;line-height:1.12}
+a{color:inherit}
+.wrap{max-width:1040px;margin:0 auto;padding:0 18px}
+.top{position:sticky;top:0;z-index:20;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top .wrap{display:flex;align-items:center;justify-content:space-between;height:56px}
+.brand{font-family:"Sora",sans-serif;font-weight:800;text-decoration:none;letter-spacing:-.01em}
+.brand span{background:var(--navy);color:var(--lime);padding:3px 9px;border-radius:8px;margin-right:8px}
+.top a.back{font-size:.95rem;color:var(--muted);text-decoration:none}
+.top a.back:hover{color:var(--ink)}
+
+/* HERO */
+.hero{background:var(--navy);color:#F1F6FB;border-radius:0 0 34px 34px;padding:44px 0 34px;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(2.3rem,6.5vw,4.2rem);font-weight:800;letter-spacing:-.03em}
+.hero h1 em{font-style:normal;color:var(--lime)}
+.hero p.lead{max-width:56ch;color:#B7C6D6;font-size:1.12rem;margin:14px 0 22px}
+.hero .chart{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:22px;padding:12px 8px 4px}
+.hero .chart svg{width:100%;height:auto;display:block}
+.hero .legend{display:flex;gap:18px;flex-wrap:wrap;font-size:.88rem;color:#B7C6D6;padding:4px 10px 10px}
+.hero .legend i{display:inline-block;width:11px;height:11px;border-radius:50%;margin-right:6px}
+
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:18px}
+.stat{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:18px;padding:14px 16px}
+.stat b{display:block;font-family:"Sora",sans-serif;font-size:1.3rem;color:var(--lime)}
+.stat span{font-size:.9rem;color:#B7C6D6}
+
+section.block{padding:40px 0 6px}
+section.block>h2{font-size:clamp(1.5rem,3.6vw,2.2rem);font-weight:800;letter-spacing:-.02em;margin-bottom:6px}
+section.block>p.sub{color:var(--muted);max-width:62ch;margin:0 0 20px}
+
+.card{background:var(--card);border:1px solid var(--line);border-radius:22px;padding:20px;box-shadow:var(--shadow)}
+.grid{display:grid;gap:14px}
+.g3{grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.g2{grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+
+/* reguli fara gatit */
+.rule{display:flex;gap:14px;align-items:flex-start}
+.rule .ico{flex:none;width:48px;height:48px;border-radius:14px;background:var(--navy);display:grid;place-items:center;font-size:1.5rem}
+.rule h3{font-size:1.05rem;margin-bottom:4px}
+.rule p{margin:0;color:var(--muted);font-size:.97rem}
+
+/* week tiles */
+.weeks{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.tile{display:flex;flex-direction:column;gap:6px;text-decoration:none;background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:var(--shadow);transition:transform .15s ease,border-color .15s ease}
+.tile:hover{transform:translateY(-3px);border-color:var(--navy)}
+.tile:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible,.btn:focus-visible{outline:3px solid var(--amber);outline-offset:2px}
+.tile .wk{font-family:"Sora",sans-serif;font-weight:800;font-size:1.05rem}
+.tile .kg{font-family:"Sora",sans-serif;font-size:1.7rem;font-weight:800;letter-spacing:-.02em}
+.tile .kg small{font-size:.8rem;color:var(--muted);font-weight:500}
+.tile .minus{font-weight:700;color:#14946B}
+.chip{display:inline-block;font-size:.78rem;font-weight:700;padding:3px 9px;border-radius:99px;background:var(--line);color:var(--ink);width:max-content}
+.chip.p1{background:#D5F3E3;color:#0E5C3C}.chip.p2{background:#FFE9C7;color:#7A4A00}.chip.p3{background:#FBD6DF;color:#8A1F3F}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .chip.p1{background:#14352A;color:#7BE0B0}:root:not([data-theme="light"]) .chip.p2{background:#3A2E17;color:#FFCB7A}:root:not([data-theme="light"]) .chip.p3{background:#4A1E2C;color:#FF9DB7}}
+.bar{height:6px;border-radius:9px;background:var(--line);overflow:hidden;margin-top:4px}
+.bar i{display:block;height:100%;background:#14946B;border-radius:9px}
+
+/* recipes */
+.rec h3{font-size:1.1rem;margin:6px 0 8px}
+.rec .time{display:inline-block;font-size:.8rem;font-weight:700;background:var(--navy);color:var(--lime);padding:3px 10px;border-radius:99px}
+.rec ol{margin:0;padding-left:1.15em;color:var(--muted);font-size:.97rem}
+.rec ol li{margin-bottom:3px}
+.rec .em{font-size:1.9rem}
+
+/* week page */
+.wk-hero{background:var(--navy);color:#F1F6FB;border-radius:0 0 34px 34px;padding:32px 0 28px}
+.wk-hero h1{font-size:clamp(2rem,5.5vw,3.3rem);font-weight:800;letter-spacing:-.03em}
+.wk-hero p{color:#B7C6D6;max-width:60ch;margin:10px 0 0}
+.wk-nums{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-top:20px}
+.wk-nums div{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:12px 14px}
+.wk-nums b{display:block;font-family:"Sora",sans-serif;font-size:1.35rem;color:var(--lime)}
+.wk-nums span{font-size:.85rem;color:#B7C6D6}
+.weigh{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:18px;color:#B7C6D6}
+.weigh input{width:110px;padding:9px 12px;border-radius:12px;border:1px solid rgba(255,255,255,.25);background:rgba(255,255,255,.08);color:#fff;font:inherit}
+.phase-note{margin-top:22px}
+.phase-note h3{font-size:1.05rem;margin-bottom:6px}
+.phase-note p{margin:0;color:var(--muted)}
+.days{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px;margin-top:18px}
+.day{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:16px;box-shadow:var(--shadow)}
+.day.done{border-color:#14946B}
+.day header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.day h3{font-size:1.2rem}
+.chk{display:flex;gap:8px;align-items:center;font-size:.9rem;color:var(--muted);cursor:pointer}
+.chk input{width:20px;height:20px;accent-color:#14946B}
+.meal{display:flex;gap:10px;border-radius:16px;padding:10px 12px;margin-bottom:8px}
+.meal .mi{flex:none;font-size:1.3rem;line-height:1.3}
+.meal b{display:block;font-size:.88rem;margin-bottom:1px}
+.meal p{margin:0;font-size:.95rem}
+.meal small{display:inline-block;margin-top:3px;font-weight:700;font-size:.78rem;opacity:.75}
+.m-bf{background:var(--c-bf)}.m-lu{background:var(--c-lu)}.m-sn{background:var(--c-sn)}.m-di{background:var(--c-di)}.m-free{background:var(--free)}
+.pager{display:flex;justify-content:space-between;gap:10px;margin:26px 0 0}
+.btn{display:inline-block;text-decoration:none;font-weight:700;background:var(--navy);color:var(--lime);padding:11px 18px;border-radius:99px;border:0;font:inherit;font-weight:700;cursor:pointer}
+.btn.ghost{background:var(--card);color:var(--ink);border:1px solid var(--line)}
+.btn[aria-disabled="true"]{opacity:.35;pointer-events:none}
+details.card{padding:14px 18px;margin-top:14px}
+summary{cursor:pointer;font-weight:700;font-family:"Sora",sans-serif}
+details ul{color:var(--muted);margin:10px 0 0;padding-left:1.2em}
+.note{background:var(--free);border-radius:22px;padding:20px;margin-top:30px}
+.note h3{margin-bottom:6px}
+.note p{margin:0}
+footer{padding:34px 0 60px;color:var(--muted);font-size:.9rem}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.tile{transition:none}}
+@media print{.top,.pager,.btn{display:none}body{background:#fff}}
+</style>
+</head>
+<body>
+<div class="top"><div class="wrap">
+  <a class="brand" href="#"><span>−10 kg</span>Plan fără gătit</a>
+  <a class="back" id="backlink" href="#" hidden>← Toate săptămânile</a>
+</div></div>
+<main id="view"></main>
+
+<script>
+(function(){
+  "use strict";
+  var START = 115;
+  var loss = [1.5,0.9,0.8,0.8,0.8,0.7,0.7,0.7,0.6,0.6,0.6,0.6,0.5,0.5];
+  var plan = [START], cum = [0], sum = 0, i;
+  for(i=0;i<loss.length;i++){ sum += loss[i]; cum.push(sum); plan.push(START - sum); }
+  var KEY = "plan-dieta-greutati-v2", DKEY = "plan-dieta-zile-v2";
+
+  function load(k){ try{ var r = localStorage.getItem(k); if(r){ var o = JSON.parse(r); if(o && typeof o === "object") return o; } }catch(e){} return {}; }
+  function store(k,o){ try{ localStorage.setItem(k, JSON.stringify(o)); }catch(e){} }
+  var actual = load(KEY), done = load(DKEY);
+
+  function fmt(n){ return n.toFixed(1).replace(".",","); }
+  function phase(w){ return w<=4 ? 1 : (w<=9 ? 2 : 3); }
+  function kcal(w){ return [0,2200,2100,2000][phase(w)]; }
+
+  function h(tag, attrs, kids){
+    var e = document.createElement(tag), a;
+    if(attrs){ for(a in attrs){ if(a==="class") e.className = attrs[a]; else if(a==="text") e.textContent = attrs[a]; else e.setAttribute(a, attrs[a]); } }
+    (kids||[]).forEach(function(k){ if(k==null) return; e.appendChild(typeof k === "string" ? document.createTextNode(k) : k); });
+    return e;
+  }
+  var NS = "http://www.w3.org/2000/svg";
+  function s(name, attrs, text){ var e = document.createElementNS(NS, name), a; for(a in attrs) e.setAttribute(a, attrs[a]); if(text != null) e.textContent = text; return e; }
+
+  /* ---------- DATE MENIU ---------- */
+  var DAYS = ["Luni","Marți","Miercuri","Joi","Vineri","Sâmbătă","Duminică"];
+
+  var BF = [
+    function(p){ return p<3 ? "3 ouă fierte + 200 g iaurt grecesc 2% + 40 g fulgi de ovăz amestecați în iaurt + 1 măr" : "4 ouă fierte + 200 g iaurt grecesc 2% + 1 măr"; },
+    function(p){ return p<3 ? "Omletă din 3 ouă (4 minute în tigaie) + 2 roșii + 1 felie de pâine integrală + 150 g iaurt grecesc" : "Omletă din 4 ouă (4 minute în tigaie) + 2 roșii + 150 g iaurt grecesc"; },
+    function(p){ return p<3 ? "Bol: 250 g iaurt grecesc + 40 g ovăz + o mână de fructe de pădure congelate + 15 g nuci" : "Bol: 250 g iaurt grecesc + o mână de fructe de pădure congelate + 15 g nuci, plus 2 ouă fierte alături"; }
+  ];
+  var LU = [
+    { t:"Pui gata făcut + fasole", f:function(p){ return "200 g piept de pui la grătar (gata făcut, fără piele) + 250 g fasole din conservă, clătită + salată de roșii și castraveți + " + (p<3?"1 lingură":"2 lingurițe") + " de ulei de măsline"; } },
+    { t:"Salată mare", f:function(p){ return "Frunze verzi, castraveți, roșii, ardei + 200 g pui gata făcut + 2 ouă fierte + 150 g năut din conservă. Dressing: 3 linguri de iaurt grecesc, lămâie, sare."; } },
+    { t:"Platou rece", f:function(p){ return "150 g piept de pui afumat la felii (cu minimum 90% carne) + 250 g linte din conservă + morcov, ardei, castraveți crud" + (p<3 ? " + 1 felie de pâine integrală" : ""); } },
+    { t:"Bol la microunde", f:function(p){ return "200 g pui gata făcut încălzit la microunde + 250 g fasole din conservă + 300 g legume congelate la microunde (5 minute) + sare, boia, piper"; } }
+  ];
+  var DI = [
+    { t:"Biftec la tigaie", min:10, f:function(p){ return "200 g biftec subțire de vită slabă (4 minute pe fiecare parte) + 300 g legume la microunde (pungă pentru aburit) + " + (p===1?"150":"75") + " g cartofi mici fierți la microunde"; } },
+    { t:"Mușchi de porc", min:12, f:function(p){ return "200 g medalioane de mușchi de porc (4–5 minute pe fiecare parte) + 300 g broccoli la microunde + " + (p===1?"150":"75") + " g orez din pliculeț (gata gătit)"; } },
+    { t:"Omletă cu pui", min:10, f:function(p){ return "Omletă din 3 ouă cu 100 g pui gata făcut în cubulețe + 300 g legume congelate în tigaie (8 minute)" + (p===1 ? " + 1 felie de pâine integrală" : ""); } },
+    { t:"Pui la air fryer", min:5, f:function(p){ return "200 g piept de pui cu sare, boia și piper: 16 minute în air fryer (sau 25 minute în cuptor) + salată mare + " + (p===1?"150":"75") + " g cartofi mici la microunde"; } },
+    { t:"Vită tocată cu legume", min:12, f:function(p){ return "200 g carne tocată de vită slabă (maximum 5% grăsime), 8 minute în tigaie + 300 g mix de legume pentru wok, congelat + " + (p===1?"150":"75") + " g orez din pliculeț"; } }
+  ];
+  function snack(p){ return "200 g iaurt grecesc 2% + " + (p===1?"30":"20") + " g nuci + 1 fruct"; }
+
+  var PHASE_INFO = {
+    1:{ name:"Faza 1", text:"Porțiile standard din meniu. Obiectiv: să-ți intre rutina în mână, nu să fii perfect." },
+    2:{ name:"Faza 2", text:"Cartofii și orezul de la cină sunt la jumătate, nucile la 20 g. Dacă greutatea a scăzut în ritmul planului, nu schimbi nimic în plus." },
+    3:{ name:"Faza 3", text:"La fel ca în faza 2, dar fără ovăz la mic dejun (îl înlocuiești cu un ou) și doar 2 lingurițe de ulei la prânz. Păstrează somnul și pașii, sunt la fel de importanți ca mâncarea." }
+  };
+
+  function menuFor(w, d){
+    var p = phase(w);
+    var bf = BF[(d + w) % 3](p);
+    var lu = LU[(d + w*2) % 4];
+    var di = (d === 5) ? null : DI[(d + w*3) % 5];
+    return {
+      bf:{ t:"Mic dejun", x:bf },
+      lu:{ t:lu.t, x:lu.f(p) },
+      sn:{ t:"Gustare", x:snack(p) },
+      di: di ? { t:di.t, x:di.f(p), min:di.min } : { t:"Masă liberă", x:"Mănânci ce îți place, într-o singură porție, fără să sari peste mesele din ziua respectivă și fără să „recuperezi" a doua zi.", free:true }
+    };
+  }
+
+  /* ---------- GRAFIC ---------- */
+  function drawChart(svg){
+    var W=800,H=330,L=58,R=26,T=22,B=42, ymin=103, ymax=116, w, v;
+    function X(x){ return L + (W-L-R) * x / 14; }
+    function Y(y){ return T + (H-T-B) * (ymax - y) / (ymax - ymin); }
+    svg.setAttribute("viewBox","0 0 "+W+" "+H);
+    for(v=104; v<=116; v+=2){
+      svg.appendChild(s("line",{x1:L,x2:W-R,y1:Y(v),y2:Y(v),stroke:"rgba(255,255,255,.12)","stroke-width":1}));
+      svg.appendChild(s("text",{x:L-10,y:Y(v)+4,"text-anchor":"end","font-size":13,fill:"#9FB0C2"},v+" kg"));
+    }
+    for(w=0; w<=14; w+=2){ svg.appendChild(s("text",{x:X(w),y:H-16,"text-anchor":"middle","font-size":13,fill:"#9FB0C2"}, w===0?"Start":"S"+w)); }
+    svg.appendChild(s("line",{x1:L,x2:W-R,y1:Y(105),y2:Y(105),stroke:"#FFB454","stroke-width":2,"stroke-dasharray":"6 5"}));
+    svg.appendChild(s("text",{x:W-R,y:Y(105)-9,"text-anchor":"end","font-size":13,"font-weight":700,fill:"#FFB454"},"Țintă: 105 kg"));
+    var d = "";
+    for(w=0; w<=14; w++){ d += (w===0?"M":"L") + X(w).toFixed(1) + " " + Y(plan[w]).toFixed(1) + " "; }
+    svg.appendChild(s("path",{d:d,fill:"none",stroke:"#B6F24B","stroke-width":4,"stroke-linejoin":"round","stroke-linecap":"round"}));
+    for(w=0; w<=14; w++){ svg.appendChild(s("circle",{cx:X(w),cy:Y(plan[w]),r:(w===0||w===14)?6:3.5,fill:"#B6F24B"})); }
+    svg.appendChild(s("text",{x:X(0)+12,y:Y(115)-10,"font-size":14,"font-weight":700,fill:"#F1F6FB"},"115 kg"));
+    svg.appendChild(s("text",{x:X(14)-4,y:Y(plan[14])+26,"text-anchor":"end","font-size":14,"font-weight":700,fill:"#F1F6FB"},"≈ "+fmt(plan[14])+" kg"));
+    var pts = Object.keys(actual).map(Number).filter(function(k){ return k>=1 && k<=14; }).sort(function(a,b){ return a-b; });
+    if(pts.length){
+      var d2 = "M"+X(0).toFixed(1)+" "+Y(START).toFixed(1)+" ";
+      pts.forEach(function(k){ d2 += "L"+X(k).toFixed(1)+" "+Y(Math.min(Math.max(actual[k],ymin),ymax)).toFixed(1)+" "; });
+      svg.appendChild(s("path",{d:d2,fill:"none",stroke:"#FFB454","stroke-width":3,"stroke-linejoin":"round"}));
+      pts.forEach(function(k){ svg.appendChild(s("circle",{cx:X(k),cy:Y(Math.min(Math.max(actual[k],ymin),ymax)),r:6,fill:"#FFB454",stroke:"#0B1B2B","stroke-width":2})); });
+    }
+  }
+
+  /* ---------- PAGINA PRINCIPALA ---------- */
+  var RECIPES = [
+    { e:"🥩", t:"Biftec subțire la tigaie", m:"10 min", s:["Usucă carnea cu un șervețel, presară sare și piper.","Tigaie încinsă, fără ulei sau cu o linguriță.","4 minute pe fiecare parte, apoi 2 minute de odihnă.","Interiorul poate rămâne ușor roz la vită."] },
+    { e:"🐖", t:"Medalioane de mușchi de porc", m:"12 min", s:["Taie mușchiul în felii de 2 cm, sare și piper.","Tigaie cu 1 linguriță de ulei, foc mediu.","4–5 minute pe fiecare parte.","Carnea de porc se mănâncă fără părți crude: să fie alb-rozalie, fără sânge."] },
+    { e:"🍗", t:"Piept de pui la air fryer", m:"5 min + 16", s:["Condimentează cu sare, boia și piper.","190 °C, 16 minute, întoarce la jumătate.","Fără air fryer: cuptor la 200 °C, 25 minute.","Pui bine făcut, fără interior roz."] },
+    { e:"🥦", t:"Legume la microunde", m:"5 min", s:["Folosești punga pentru aburit sau legume congelate într-un bol cu 2 linguri de apă.","Acoperi cu un capac sau farfurie.","4–5 minute la putere maximă.","Sare, piper și zeamă de lămâie."] },
+    { e:"🥔", t:"Cartofi mici la microunde", m:"8 min", s:["Spală cartofii mici, înțeapă-i cu furculița.","Bol cu capac, 8 minute la putere maximă.","Întoarce-i la jumătate.","Sare, piper, puțin iaurt grecesc ca sos."] },
+    { e:"🥚", t:"Ouă fierte", m:"10 min, din mers", s:["Pune 6 ouă în oală, acoperă cu apă rece.","De la clocot, 10 minute.","Răcește sub apă rece și păstrează-le cu coaja în frigider, 5 zile.","Sau cumpără-le deja fierte, la pachet."] }
+  ];
+
+  function renderHome(){
+    var root = h("div");
+    // HERO
+    var svg = document.createElementNS(NS,"svg");
+    svg.setAttribute("role","img"); svg.setAttribute("aria-label","Grafic cu evoluția estimată a greutății de la 115 la 105 kg în 14 săptămâni");
+    drawChart(svg);
+    var hero = h("div",{class:"hero"},[ h("div",{class:"wrap"},[
+      h("h1",null,["De la 115 la ",h("em",{text:"105 kg"}),h("span",{text:" în 14 săptămâni"})]),
+      h("p",{class:"lead",text:"Fără gătit duminica: cumperi lucruri gata făcute, încălzești, tai, mănânci. Cina durează 10–15 minute."}),
+      h("div",{class:"chart"},[svg, h("div",{class:"legend"},[
+        h("span",null,[h("i",{style:"background:#B6F24B"}),"Estimare plan"]),
+        h("span",null,[h("i",{style:"background:#FFB454"}),"Greutatea ta reală (o treci în pagina fiecărei săptămâni)"])
+      ])]),
+      h("div",{class:"stats"},[
+        stat("2.200 → 2.000","kcal pe zi, scade treptat"),
+        stat("≈ 180 g","proteină pe zi"),
+        stat("0,5–0,9 kg","pierdere pe săptămână, după prima"),
+        stat("≈ 15 min","gătit activ pe zi, în total")
+      ])
+    ])]);
+    root.appendChild(hero);
+
+    var wrap = h("div",{class:"wrap"});
+    root.appendChild(wrap);
+
+    // reguli fara gatit
+    wrap.appendChild(h("section",{class:"block"},[
+      h("h2",{text:"Cum rămâne totul ușor"}),
+      h("p",{class:"sub",text:"Planul e făcut ca să nu ai nevoie de rețete. Ai trei reguli."}),
+      h("div",{class:"grid g3"},[
+        rule("🛒","Cumperi gata","Piept de pui la grătar din supermarket (fără piele), ouă fierte la pachet, conserve de fasole, linte și năut, legume congelate, orez la pliculeț."),
+        rule("🔥","Cina în 10–15 minute","Carne la tigaie sau în air fryer, legume la microunde, un carbohidrat din pliculeț sau cartofi la microunde. Fără sosuri sau liste lungi de ingrediente."),
+        rule("🥣","Mic dejun și gustare identice","Ouă sau omletă cu iaurt grecesc, iar gustarea e mereu iaurt, nuci și un fruct. Mai puține decizii, mai ușor de ținut.")
+      ])
+    ]));
+
+    // saptamani
+    var tiles = h("div",{class:"weeks"});
+    for(var w=1; w<=14; w++){
+      var cnt = 0, d;
+      for(d=0; d<7; d++){ if(done[w+"-"+d]) cnt++; }
+      var p = phase(w);
+      var kids = [
+        h("span",{class:"wk",text:"Săptămâna "+w}),
+        h("span",{class:"kg"},[fmt(plan[w]),h("small",{text:" kg"})]),
+        h("span",{class:"minus",text:"−"+fmt(loss[w-1])+" kg"}),
+        h("span",{class:"chip p"+p,text:kcal(w).toLocaleString("ro-RO")+" kcal"}),
+        h("div",{class:"bar","aria-hidden":"true"},[h("i",{style:"width:"+Math.round(cnt/7*100)+"%"})])
+      ];
+      if(actual[w] != null){ kids.splice(3,0,h("span",{style:"font-size:.85rem;color:var(--muted)",text:"Tu: "+fmt(actual[w])+" kg"})); }
+      tiles.appendChild(h("a",{class:"tile",href:"#saptamana-"+w,"aria-label":"Deschide săptămâna "+w+": "+cnt+" din 7 zile bifate"},kids));
+    }
+    wrap.appendChild(h("section",{class:"block"},[
+      h("h2",{text:"Alege săptămâna"}),
+      h("p",{class:"sub",text:"Fiecare săptămână are meniul ei pe 7 zile, greutatea estimată și caloriile țintă. Prima săptămână arată cel mai mult pentru că pierzi și apă. Estimările sunt orientative: contează media pe 2–3 săptămâni."}),
+      tiles
+    ]));
+
+    // retete
+    var rg = h("div",{class:"grid g3"});
+    RECIPES.forEach(function(r){
+      rg.appendChild(h("div",{class:"card rec"},[
+        h("div",{class:"em",text:r.e}),
+        h("h3",{text:r.t}),
+        h("span",{class:"time",text:r.m}),
+        h("ol",{style:"margin-top:10px"}, r.s.map(function(x){ return h("li",{text:x}); }))
+      ]));
+    });
+    wrap.appendChild(h("section",{class:"block"},[
+      h("h2",{text:"Metodele de care ai nevoie"}),
+      h("p",{class:"sub",text:"Șase lucruri de făcut. Cu ele ai toate mesele din plan."}),
+      rg
+    ]));
+
+    // cumparaturi
+    wrap.appendChild(h("section",{class:"block"},[
+      h("h2",{text:"Lista de cumpărături pe o săptămână"}),
+      h("p",{class:"sub",text:"Cantitățile sunt orientative. Cumperi o dată pe săptămână sau chiar de două ori, ca să ai mereu proaspăt."}),
+      h("div",{class:"grid g3"},[
+        listCard("🍗","Proteine",["Piept de pui la grătar, gata făcut: 1 kg","Piept de pui crud (pentru air fryer): 400 g","Biftec subțire de vită slabă: 400 g","Mușchi de porc: 400 g","Carne tocată de vită slabă: 200 g","Piept de pui afumat la felii: 300 g","Ouă: 24 (sau 1 pachet de ouă fierte)","Iaurt grecesc 2%: ≈ 3 kg"]),
+        listCard("🥫","Conserve și carbohidrați",["Fasole, linte, năut la conserve: 7 cutii","Fulgi de ovăz: 300 g","Orez la pliculeț: 4 pliculețe","Cartofi mici: 1 kg","Pâine integrală: 1 pâine mică","Fructe (mere, pere, portocale): 14 buc."]),
+        listCard("🥦","Legume și rest",["Legume congelate la abur/wok: 3 kg","Roșii, castraveți, ardei, morcov: 2 kg","Salată verde: 2 pachete","Nuci sau migdale: 200 g","Fructe de pădure congelate: 300 g","Ulei de măsline, sare, boia, piper, lămâie"])
+      ])
+    ]));
+
+    // reguli zilnice
+    wrap.appendChild(h("section",{class:"block"},[
+      h("h2",{text:"Obiceiurile care fac diferența"}),
+      h("div",{class:"grid g2",style:"margin-top:14px"},[
+        listCard("📅","În fiecare zi",["2,5–3 litri de apă; cafea și ceai fără zahăr","Proteină la fiecare masă","Jumătate din farfurie, legume","8.000–10.000 de pași","Minimum 7 ore de somn"]),
+        listCard("🏋️","În fiecare săptămână",["3 antrenamente de forță de 45 minute (genuflexiuni, împins, tras, îndreptări)","O singură masă liberă, sâmbătă seara","Alcool: cel mult 1–2 băuturi, în masa liberă","O cântărire, în aceeași zi, dimineața, după toaletă"])
+      ])
+    ]));
+
+    wrap.appendChild(h("div",{class:"note"},[
+      h("h3",{text:"Înainte să începi"}),
+      h("p",{text:"Este un plan general, nu un consult medical. Înainte să începi, merită un control la medicul de familie (tensiune, glicemie, colesterol, tiroidă), mai ales dacă iei medicamente sau ai probleme de sănătate. Dacă ai amețeli sau oboseală puternică, mărește mesele și cere sfatul unui medic."})
+    ]));
+    wrap.appendChild(h("footer",{text:"Estimările de greutate sunt orientative și diferă de la o persoană la alta. Datele introduse se salvează în browserul tău."}));
+    return root;
+  }
+  function stat(b, t){ return h("div",{class:"stat"},[h("b",{text:b}),h("span",{text:t})]); }
+  function rule(ico, t, x){ return h("div",{class:"card rule"},[ h("div",{class:"ico",text:ico}), h("div",null,[ h("h3",{text:t}), h("p",{text:x}) ]) ]); }
+  function listCard(ico, t, items){ return h("div",{class:"card"},[ h("h3",{text:ico+"  "+t,style:"margin-bottom:8px"}), h("ul",{style:"margin:0;padding-left:1.15em;color:var(--muted)"}, items.map(function(x){ return h("li",{text:x}); })) ]); }
+
+  /* ---------- PAGINA SAPTAMANII ---------- */
+  var ICON = { bf:"🌅", lu:"🥗", sn:"🥜", di:"🍽️" };
+  var CLS = { bf:"m-bf", lu:"m-lu", sn:"m-sn", di:"m-di" };
+
+  function renderWeek(w){
+    var p = phase(w), root = h("div");
+    var inp = h("input",{type:"number",step:"0.1",min:"50",max:"250",inputmode:"decimal",placeholder:"kg","aria-label":"Greutatea ta reală la săptămâna "+w+", în kg"});
+    if(actual[w] != null) inp.value = actual[w];
+    inp.addEventListener("input", function(){
+      var v = parseFloat(String(inp.value).replace(",","."));
+      if(isFinite(v) && v>50 && v<250) actual[w] = v; else delete actual[w];
+      store(KEY, actual);
+    });
+    root.appendChild(h("div",{class:"wk-hero"},[ h("div",{class:"wrap"},[
+      h("span",{class:"chip p"+p,text:PHASE_INFO[p].name}),
+      h("h1",{style:"margin-top:10px",text:"Săptămâna "+w}),
+      h("p",{text:"Meniul pe 7 zile, fără rețete complicate. Bifează fiecare zi în care ai urmat planul aproximativ."}),
+      h("div",{class:"wk-nums"},[
+        num("≈ "+kcal(w).toLocaleString("ro-RO"),"kcal pe zi"),
+        num("−"+fmt(loss[w-1])+" kg","pierdere estimată"),
+        num(fmt(plan[w])+" kg","greutate estimată la final"),
+        num("−"+fmt(cum[w])+" kg","total de la start")
+      ]),
+      h("label",{class:"weigh"},[ "Greutatea ta la finalul săptămânii:", inp, "kg" ])
+    ])]));
+
+    var wrap = h("div",{class:"wrap"});
+    root.appendChild(wrap);
+    wrap.appendChild(h("div",{class:"card phase-note"},[ h("h3",{text:PHASE_INFO[p].name+": ce se schimbă"}), h("p",{text:PHASE_INFO[p].text}) ]));
+
+    var daysEl = h("div",{class:"days"});
+    for(var d=0; d<7; d++){
+      daysEl.appendChild(dayCard(w,d));
+    }
+    wrap.appendChild(daysEl);
+
+    wrap.appendChild(h("details",{class:"card"},[
+      h("summary",{text:"Ce cumperi pentru săptămâna asta"}),
+      h("ul",null,[
+        "Pui la grătar gata făcut: ≈ 1 kg; piept crud pentru air fryer: 400 g",
+        "Vită slabă (biftec subțire și tocată): 600 g; mușchi de porc: 400 g",
+        "Ouă: 24, sau ouă fierte la pachet",
+        "Iaurt grecesc 2%: ≈ 3 kg",
+        "Fasole, linte, năut la conserve: 7 cutii",
+        "Legume congelate: 3 kg; legume proaspete pentru salată: 2 kg",
+        "Cartofi mici: 1 kg; orez la pliculeț: 4",
+        "Nuci: 150 g; fructe: 14 bucăți; ovăz: 300 g (în fazele 1–2)"
+      ].map(function(x){ return h("li",{text:x}); }))
+    ]));
+
+    var prev = w>1 ? h("a",{class:"btn ghost",href:"#saptamana-"+(w-1),text:"← Săptămâna "+(w-1)}) : h("a",{class:"btn ghost","aria-disabled":"true",href:"#saptamana-1",text:"← Înapoi"});
+    var next = w<14 ? h("a",{class:"btn",href:"#saptamana-"+(w+1),text:"Săptămâna "+(w+1)+" →"}) : h("a",{class:"btn",href:"#",text:"Felicitări, ai terminat 🎉"});
+    wrap.appendChild(h("div",{class:"pager"},[prev,next]));
+    wrap.appendChild(h("footer",{text:"Dacă greutatea nu scade două săptămâni la rând, verifică pașii, somnul, uleiul și gustările în plus înainte să tai mai multe calorii."}));
+    return root;
+  }
+  function num(b,t){ return h("div",null,[h("b",{text:b}),h("span",{text:t})]); }
+
+  function dayCard(w,d){
+    var m = menuFor(w,d), id = w+"-"+d;
+    var card = h("article",{class:"day"+(done[id]?" done":"")});
+    var cb = h("input",{type:"checkbox"});
+    cb.checked = !!done[id];
+    cb.addEventListener("change", function(){
+      if(cb.checked){ done[id] = 1; card.classList.add("done"); } else { delete done[id]; card.classList.remove("done"); }
+      store(DKEY, done);
+    });
+    card.appendChild(h("header",null,[ h("h3",{text:DAYS[d]}), h("label",{class:"chk"},[cb,"Respectată"]) ]));
+    ["bf","lu","sn","di"].forEach(function(k){
+      var it = m[k];
+      var cls = (k==="di" && it.free) ? "m-free" : CLS[k];
+      var body = [ h("b",{text:it.t}), h("p",{text:it.x}) ];
+      if(k==="di" && it.min) body.push(h("small",{text:"⏱ ≈ "+it.min+" min activ"}));
+      card.appendChild(h("div",{class:"meal "+cls},[ h("div",{class:"mi",text:(k==="di"&&it.free)?"🎉":ICON[k]}), h("div",null,body) ]));
+    });
+    return card;
+  }
+
+  /* ---------- RUTARE ---------- */
+  function route(){
+    var view = document.getElementById("view");
+    while(view.firstChild) view.removeChild(view.firstChild);
+    var m = /^#saptamana-(\d{1,2})$/.exec(location.hash);
+    var n = m ? parseInt(m[1],10) : 0;
+    var back = document.getElementById("backlink");
+    if(n>=1 && n<=14){
+      view.appendChild(renderWeek(n));
+      back.hidden = false;
+      document.title = "Săptămâna "+n+" · Plan de slăbit";
+    } else {
+      view.appendChild(renderHome());
+      back.hidden = true;
+      document.title = "Plan de slăbit: 115 → 105 kg în 14 săptămâni";
+    }
+    window.scrollTo(0,0);
+  }
+  window.addEventListener("hashchange", route);
+  route();
+})();
+</script>
+</body>
+</html>
